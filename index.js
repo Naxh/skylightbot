@@ -78,4 +78,4 @@ bot.on('guildMemberRemove', async (member) => {
     .setTimestamp();
     channel.send(embed);
 })
-bot.login("NDg2MjI4MzEyNDg2NTc2MTI5.Dm8C8Q.J5zY0fClzQTPStgdEkU-G4WonJQ");
+bot.login(proces.env.TOKEN);
