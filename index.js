@@ -23,7 +23,7 @@ fs.readdir("./commands/", (err, files) =>{
 });
 
 bot.on('ready', async () => {
-    console.log(bot.user.username + " is now online!");
+    console.log(bot.user.username + " is now online!!");
     bot.user.setActivity("in SkyLightServices!");
     setInterval(function(){
         bot.user.setActivity("in development");
