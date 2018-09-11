@@ -4,7 +4,8 @@ module.exports.run = async (bot, message, args) => {
     .setAuthor("Invite Rewards")
     .setColor("#2159b2")
     .setTimestamp()
-    .setDescription(require("../index.js").rewards.map((name, type, invites) => "**" + name + "** - ``" + invites + "`` invites"))
+    .setDescription(require("../index.js").rewards.map((name, type, invites) => "**" + name + "** - ``" + invites + "`` invites"));
+    message.channel.send(embed);
 }
 module.exports.help = {
     name: "inviterewards"
