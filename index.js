@@ -67,8 +67,52 @@ bot.on('ready', async () => {
         });
     });
 });
-})
-
+});
+let selfRoles = [
+    {role:"Updates",emoji:"🇺"}
+]
+const events = {
+    MESSAGE_REACTION_ADD: 'messageReactionAdd'
+};
+bot.on('raw', async event => {
+    if (!events.hasOwnProperty(event.t)) return;
+    const { d: data } = event;
+    const user = bot.users.get(data.user_id);
+    const channel = bot.channels.get(data.channel_id);
+    const message = await channel.fetchMessage(data.message_id);
+    const emojiKey = (data.emoji.id) ? `${data.emoji.name}:${data.emoji.id}` : data.emoji.name;
+    const member = message.guild.member(user.id);
+    if(channel.id == "489209245942808576"){
+        selfRoles.forEach(element => {
+            if(emojiKey == element.emoji){
+                member.addRole(message.guild.roles.find(r => r.name.toLowerCase() == element.role.toLowerCase()));
+                message.reply("You now have the ``" + element.role + "`` role!");
+            }
+        })
+    }
+});
+const events2 = {
+    MESSAGE_REACTION_REMOVE: 'messageReactionRemove'
+};
+bot.on('raw', async event => {
+    if (!events2.hasOwnProperty(event.t)) return;
+    const { d: data } = event;
+    const user = bot.users.get(data.user_id);
+    const channel = bot.channels.get(data.channel_id);
+    const message = await channel.fetchMessage(data.message_id);
+    const emojiKey = (data.emoji.id) ? `${data.emoji.name}:${data.emoji.id}` : data.emoji.name;
+    const member = message.guild.member(user.id);
+    if(channel.id == "489209245942808576"){
+        selfRoles.forEach(element => {
+            if(emojiKey == element.emoji){
+                if(member.roles.has(message.guild.roles.find(r => r.name.toLowerCase() == element.role.toLowerCase()))){
+                    member.removeRole(message.guild.roles.find(r => r.name.toLowerCase() == element.role.toLowerCase()));
+                    message.reply("You no longer have the ``" + element.role + "`` role!");
+                }
+            }
+        })
+    }
+});
 bot.on('message', async (message) => {
     if(message.author.bot) return;
     if(message.channel.type == "dm") return;
