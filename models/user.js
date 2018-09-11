@@ -40,6 +40,6 @@ const userSchema = mongoose.Schema({
       min: 1.00,
       default: 1.00
     },
-}, { collection: 'users' });
+}, { collection: 'Users' });
 
 module.exports = mongoose.model("User", userSchema);
