@@ -11,7 +11,6 @@ module.exports.run = async (bot, message, args) => {
     .setColor("#2159b2");
     message.channel.send(embed);
 }
-
 module.exports.help = {
     name: "level"
 }
