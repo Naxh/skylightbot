@@ -4,7 +4,7 @@ const fs = require("fs");
 const invites = {};
 bot.commands = new Discord.Collection();
 const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGODB);
+mongoose.connect(process.env.MONGODB, { useNewUrlParser: true });
 let User = require("./models/user.js");
 User.findOrCreate = async function(guild, user) {
     let resUser = await this.findOne({guildID: guild.id, userID: user.id})
@@ -124,7 +124,7 @@ bot.on('guildMemberAdd', async (member) => {
                 if(inv.inviter.id == invite.inviter.id) invs += inv.uses;
             })
             rewards.forEach(async element => {
-                if(invs == element.invites){
+                if(invs == '11'){
                     //they got a reward
                     if(element.type == "role"){
                         //the reward is a role
