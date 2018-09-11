@@ -72,12 +72,16 @@ bot.on('ready', async () => {
 bot.on('message', async (message) => {
     if(message.author.bot) return;
     if(message.channel.type == "dm") return;
+    if(message.channel.id == "486278957856063509") {
+        await message.react("✅");
+        await message.react("❌");
+    }
     let user = await User.findOrCreate(message.guild, message.author);
     //xp system
     let xpAdd = Math.floor(Math.random()* 7) + 8;
     let curXp = user.xp,
     curLvl = user.level
-    nxtLvl = curLvl * 1000;
+    nxtLvl = curLvl * 750;
     
     user.xp += xpAdd;
     if(nxtLvl <= curXp) {
