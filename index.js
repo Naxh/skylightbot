@@ -4,7 +4,7 @@ const fs = require("fs");
 const invites = {};
 bot.commands = new Discord.Collection();
 const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGODB, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB);
 let User = require("./models/user.js");
 User.findOrCreate = async function(guild, user) {
     let resUser = await this.findOne({guildID: guild.id, userID: user.id})
@@ -31,7 +31,7 @@ const rewards = [
     {name:"Super Inviter", type: "role", invites: "15", role:"Super Inviter"},
     {name:"Invite Master", type: "role", invites: "30", role:"Invite Master"}
 ]
-
+module.exports.rewards = rewards;
 fs.readdir("./commands/", (err, files) =>{
 
     if(err) console.log(err);
@@ -124,7 +124,7 @@ bot.on('guildMemberAdd', async (member) => {
                 if(inv.inviter.id == invite.inviter.id) invs += inv.uses;
             })
             rewards.forEach(async element => {
-                if(invite.inviter.tag == "ThisLightMan#6616"/*invs == element.invites*/){
+                if(invs == element.invites){
                     //they got a reward
                     if(element.type == "role"){
                         //the reward is a role
