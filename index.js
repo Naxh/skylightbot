@@ -77,7 +77,7 @@ bot.on('message', async (message) => {
     let xpAdd = Math.floor(Math.random()* 7) + 8;
     let curXp = user.xp,
     curLvl = user.level
-    nxtLvl = curLvl * 500;
+    nxtLvl = curLvl * 1000;
     
     user.xp += xpAdd;
     if(nxtLvl <= curXp) {
