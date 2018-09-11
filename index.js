@@ -19,15 +19,15 @@ User.findOrCreate = async function(guild, user) {
     return resUser
   }
 const rewards = [
-    {name:"Inviter", type: "role", invites: "1", role:"Inviter"},
+    {name:"Inviter Role", type: "role", invites: "1", role:"Inviter"},
     {name:"1 Level", type: "levels", invites: "2", levels:1},
     {name:"3 Levels", type: "levels", invites: "5", levels:3},
-    {name:"Inviter+", type: "role", invites: "5", role:"Inviter+"},
+    {name:"Inviter+ Role", type: "role", invites: "5", role:"Inviter+"},
     {name:"5 Levels", type: "levels", invites: "8", levels:5},
-    {name:"Epic Inviter", type: "role", invites: "10", role:"Epic Inviter"},
+    {name:"Epic Inviter Role", type: "role", invites: "10", role:"Epic Inviter"},
     {name:"10 Levels", type: "levels", invites: "15", levels:10},
-    {name:"Super Inviter", type: "role", invites: "15", role:"Super Inviter"},
-    {name:"Invite Master", type: "role", invites: "30", role:"Invite Master"}
+    {name:"Super Inviter Role", type: "role", invites: "15", role:"Super Inviter"},
+    {name:"Invite Master Role", type: "role", invites: "30", role:"Invite Master"}
 ]
 module.exports.rewards = rewards;
 fs.readdir("./commands/", (err, files) =>{
