@@ -109,7 +109,7 @@ bot.on('raw', async event => {
             console.log("2")
             if(emojiKey == element.emoji){
                 console.log("3")
-                if(member.roles.has(message.guild.roles.find(r => r.name.toLowerCase() == element.role.toLowerCase()))){
+                if(member.roles.has(message.guild.roles.find(r => r.name.toLowerCase() == element.role.toLowerCase()).id)){
                     console.log("4")
                     member.removeRole(message.guild.roles.find(r => r.name.toLowerCase() == element.role.toLowerCase()));
                     message.channel.send(member + ", You no longer have the ``" + element.role + "`` role!");
