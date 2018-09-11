@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const User = require("../models/user.js");
 module.exports.run = async (bot, message, args) => {
-    let user = await User.findorCreate(message.guild, message.author);
+    let user = await User.findOrCreate(message.guild, message.author);
     let embed = new Discord.RichEmbed()
     .setAuthor(message.author.username, message.author.avatarURL)
     .setTimestamp()
