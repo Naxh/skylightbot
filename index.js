@@ -86,7 +86,7 @@ bot.on('raw', async event => {
         selfRoles.forEach(element => {
             if(emojiKey == element.emoji){
                 member.addRole(message.guild.roles.find(r => r.name.toLowerCase() == element.role.toLowerCase()));
-                message.channel.send(member + ", You now have the ``" + element.role + "`` role!");
+                message.channel.send(member + ", You now have the ``" + element.role + "`` role!").then(msg => {msg.delete(5000)});
             }
         })
     }
@@ -104,15 +104,11 @@ bot.on('raw', async event => {
     console.log(emojiKey)
     const member = message.guild.member(user.id);
     if(channel.id == "489209245942808576"){
-        console.log("1")
         selfRoles.forEach(element => {
-            console.log("2")
             if(emojiKey == element.emoji){
-                console.log("3")
                 if(member.roles.has(message.guild.roles.find(r => r.name.toLowerCase() == element.role.toLowerCase()).id)){
-                    console.log("4")
                     member.removeRole(message.guild.roles.find(r => r.name.toLowerCase() == element.role.toLowerCase()));
-                    message.channel.send(member + ", You no longer have the ``" + element.role + "`` role!");
+                    message.channel.send(member + ", You no longer have the ``" + element.role + "`` role!").then(msg => {msg.delete(5000)});
                 }
             }
         })
