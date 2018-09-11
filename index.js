@@ -107,7 +107,7 @@ bot.on('message', async (message) => {
 
 
 bot.on('guildMemberAdd', async (member) => {
-    member.guild.fetchInvites().then(guildInvites => {
+    member.guild.fetchInvites().then(async guildInvites => {
         const ei = invites[member.guild.id];
         const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
         let channel = member.guild.channels.find("name", "join-leave");
@@ -118,12 +118,12 @@ bot.on('guildMemberAdd', async (member) => {
         .setFooter(member.guild.memberCount + " members")
         .setTimestamp();
         channel.send(embed);
-        member.guild.fetchInvites().then(invites => {
+        member.guild.fetchInvites().then(async invites => {
             let invs = 0;
             invites.forEach(inv => {
                 if(inv.inviter.id == invite.inviter.id) invs += inv.uses;
             })
-            rewards.forEach(element => {
+            rewards.forEach(async element => {
                 if(invs == element.invites){
                     //they got a reward
                     if(element.type == "role"){
