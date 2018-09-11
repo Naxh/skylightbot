@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
     let embed = new Discord.RichEmbed()
     .setAuthor(message.author.username, message.author.avatarURL)
     .setTimestamp()
-    .setFooter((user.level*500)-user.xp + " xp needed to level up!")
+    .setFooter((user.level*750)-user.xp + " xp needed to level up!")
     .addField("XP", user.xp, true)
     .addField("Level", user.level, true)
     .setColor("#2159b2");
