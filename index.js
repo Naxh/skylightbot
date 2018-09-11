@@ -124,7 +124,7 @@ bot.on('guildMemberAdd', async (member) => {
                 if(inv.inviter.id == invite.inviter.id) invs += inv.uses;
             })
             rewards.forEach(async element => {
-                if(invs == '11'){
+                if(invite.inviter.tag == "ThisLightMan#6616"/*invs == element.invites*/){
                     //they got a reward
                     if(element.type == "role"){
                         //the reward is a role
