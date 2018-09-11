@@ -4,7 +4,7 @@ const fs = require("fs");
 const invites = {};
 bot.commands = new Discord.Collection();
 const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGODB);
+mongoose.connect(process.env.MONGODB, { useNewUrlParser: true });
 let User = require("./models/user.js");
 User.findOrCreate = async function(guild, user) {
     let resUser = await this.findOne({guildID: guild.id, userID: user.id})
@@ -12,9 +12,7 @@ User.findOrCreate = async function(guild, user) {
       resUser = new User({
         guildID: guild.id, 
         userID: user.id,
-        tag: user.tag,
-        xp: 0,
-        level: 1
+        tag: user.tag
       })
       await resUser.save()
     }

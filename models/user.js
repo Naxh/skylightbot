@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema({
     level: {
       type: Number,
       min: 0,
-      default: 0
+      default: 1
     },
     xpmultiplier: {
       type: Number,
