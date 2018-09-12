@@ -12,7 +12,7 @@ module.exports.run = async(bot,message,args) => {
     let guild = message.guild;
     let {coins, 
          xp
-       } = await User.findOrCreate(message.author, message.guild.id);
+       } = await User.findOrCreate(message.guild, message.author);
 
 
     const embed = new Discord.RichEmbed() 
