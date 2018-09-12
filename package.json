@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "mongoose": "^5.2.14"
+    "mongoose": "^5.2.14",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
   }
 }
