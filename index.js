@@ -69,7 +69,9 @@ bot.on('ready', async () => {
 });
 });
 let selfRoles = [
-    {role:"Updates",emoji:"🇺"}
+    {role:"Updates",emoji:"🇺"},
+    {role:"Polls",emoji:"🇵"},
+    {role:"Events",emoji:"🇪"}
 ]
 const events = {
     MESSAGE_REACTION_ADD: 'messageReactionAdd'
@@ -123,7 +125,7 @@ bot.on('message', async (message) => {
     }
     let user = await User.findOrCreate(message.guild, message.author);
     //xp system
-    let xpAdd = Math.floor(Math.random()* 7) + 8;
+    let xpAdd = ~~((~~(Math.random()* 7) + 8)*user.xpmultiplier);
     let curXp = user.xp,
     curLvl = user.level
     nxtLvl = curLvl * 750;
