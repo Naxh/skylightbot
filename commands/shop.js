@@ -23,8 +23,6 @@ module.exports.run = async(bot,message,args) => {
     .addField(`**2.00x xp boost**`, "500 coins")
     .addField(`**2.00x coin boost**`, "500 coins")
     .addField(`**Your coins**`, coins)
-}
-
 message.author.send(embed);
     message.author.send("Say the name of item you would like to buy").then(ms =>{
       const collector = new Discord.MessageCollector(ms.channel, m => message.author.id === message.author.id, { time: 180000});
@@ -59,7 +57,7 @@ message.author.send(embed);
           
   })
 })
-
+}
                                                     
 module.exports.help = {
     name: "shop"
