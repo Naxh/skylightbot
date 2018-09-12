@@ -19,7 +19,7 @@ module.exports.run = async(bot,message,args) => {
 
      
     .setColor("#ff4b4b")
-    .setAuthor(`${message.member.user.tag} Welcome to the Sky Light Shop`, message.author.displayAvatarURL)
+    .setAuthor(`${message.member.user.tag}, Welcome to the SkyLight Shop`, message.author.displayAvatarURL)
     .addField(`**2.00x xp boost**`, "500 coins")
     .addField(`**2.00x coin boost**`, "500 coins")
     .addField(`**Your coins**`, coins)

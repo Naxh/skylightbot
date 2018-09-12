@@ -140,6 +140,21 @@ bot.on('message', async (message) => {
         message.channel.send(lvlUp).then(msg => {msg.delete(5000)});   
         user.level = curLvl+1;         
     }
+    // coin system
+
+    let user = await User.findOrCreate(message.author, message.guild.id);
+    let coinAmt = ~~(Math.random() * 10)
+    let baseAmt = ~~(Math.random() * 10)
+
+    if(coinAmt === baseAmt) {
+        user.coins += coinAmt
+        let coinembbed = new Discord.RichEmbed()
+            .setAuthor(`${message.author.username}`, message.member.displayAvatarURL)
+            .setColor("RANDOM")
+            .setTitle("Coins added Successfully") 
+            .setDescription(`${coinAmt * user.coinmultiplier} Coins have been added to your balance`);
+            message.channel.send(coinEmbed).then(msg => msg.delete(3000)); 
+    }
     user.save();
     let prefix = "-";
     if(!message.content.startsWith(prefix)) return;
@@ -149,8 +164,6 @@ bot.on('message', async (message) => {
     let commandfile = bot.commands.get(cmd.slice(prefix.length));
     if(commandfile) commandfile.run(bot, message, args);
 });
-
-
 
 
 
