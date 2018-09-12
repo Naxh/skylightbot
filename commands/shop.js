@@ -11,7 +11,8 @@ module.exports.run = async(bot,message,args) => {
     let member = message.member;
     let guild = message.guild;
     let {coins, 
-         xp
+         xp,
+         coinmultiplier
        } = await User.findOrCreate(message.guild, message.author);
 
 
