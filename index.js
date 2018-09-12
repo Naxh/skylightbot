@@ -147,7 +147,7 @@ bot.on('message', async (message) => {
 
     if(coinAmt === baseAmt) {
         user.coins += coinAmt
-        let coinembbed = new Discord.RichEmbed()
+        let coinEmbed = new Discord.RichEmbed()
             .setAuthor(`${message.author.username}`, message.member.displayAvatarURL)
             .setColor("RANDOM")
             .setTitle("Coins added Successfully") 
