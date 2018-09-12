@@ -3,15 +3,12 @@ const User = require("../models/user.js");
 module.exports.run = async (bot, message, args) => {
     let user = await User.findOrCreate(message.guild, message.author);
     let embed = new Discord.RichEmbed()
-    .setAuthor(message.author.username, message.author.avatarURL)
+    .setAuthor("Coins for " + message.author.tag, message.author.avatarURL)
+    .addField("Coins", user.coins, true)
+    .addField("Coin Multiplier", user.coinmultiplier)
     .setTimestamp()
-    .setFooter((user.level*750)-user.xp + " xp needed to level up!")
-    .addField("XP", user.xp, true)
-    .addField("XP Multiplier", user.xpmultiplier, true)
-    .addField("Level", user.level, true)
     .setColor("#2159b2");
-    message.channel.send(embed);
 }
 module.exports.help = {
-    name: "level"
+    name: "coins"
 }
