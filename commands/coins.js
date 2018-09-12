@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const User = require("../models/user.js");
+
 module.exports.run = async (bot, message, args) => {
     let user = await User.findOrCreate(message.guild, message.author);
     let embed = new Discord.RichEmbed()
