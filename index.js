@@ -146,7 +146,7 @@ bot.on('message', async (message) => {
     let baseAmt = ~~(Math.random() * 10)
 
     if(coinAmt === baseAmt) {
-        user.coins += coinAmt
+        user.coins += coinAmt++;
         let coinEmbed = new Discord.RichEmbed()
             .setAuthor(`${message.author.username}`, message.member.displayAvatarURL)
             .setColor("RANDOM")
