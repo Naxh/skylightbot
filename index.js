@@ -142,7 +142,6 @@ bot.on('message', async (message) => {
     }
     // coin system
 
-    let user = await User.findOrCreate(message.author, message.guild.id);
     let coinAmt = ~~(Math.random() * 10)
     let baseAmt = ~~(Math.random() * 10)
 
