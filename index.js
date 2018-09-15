@@ -102,7 +102,7 @@ bot.on('raw', async event => {
                 "Question 3"
             ]}
         ];
-        applyRoles.forEach(element => {
+        applyRoles.forEach(async element => {
             if(emojiKey == element.emoji){
                 if(member.roles.has(message.guild.roles.find(r => r.name.toLowerCase() == element.role))) return message.channel.send(member + ", You already have that role!").then(msg => {msg.delete(5000)});
                 message.guild.createChannel(element.role + "-" + member.id, "text").then(ch => {
