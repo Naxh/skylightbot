@@ -15,6 +15,11 @@ const userSchema = mongoose.Schema({
       required: true,
       match: /^.*#\d{4}$/
     },
+    credits: {
+      type: Number,
+      min: 0,
+      default: 0
+    },
     xp: {
       type: Number,
       min: 0,

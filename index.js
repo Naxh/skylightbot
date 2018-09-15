@@ -109,7 +109,7 @@ bot.on('raw', async event => {
                 message.guild.createChannel(element.role + "-" + member.id, "text").then(async ch => {
                     ch.setParent(message.guild.channels.get("490358699651629069"));
                     ch.overwritePermissions(member.id, {
-                        SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, READ_MESSAGES: true
+                        SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, READ_MESSAGES: true, VIEW_CHANNEL: true
                     })
                     message.channel.send(member + ", Your " + element.role + " application is ready in " + ch + "!").then(msg => {msg.delete(10000)});
                     let embed = new Discord.RichEmbed()
@@ -170,6 +170,28 @@ bot.on('message', async (message) => {
         await message.react("❌");
     }
     let user = await User.findOrCreate(message.guild, message.author);
+    if(message.channel.id == "490610018073182209"){
+        message.guild.createChannel(message.author.tag + "-" + message.author.id).then(ch => {
+            ch.setParent(message.guild.channels.get("490615226014760960"));
+            ch.overwritePermissions(message.author.id, {
+                SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, READ_MESSAGES: true, VIEW_CHANNEL: true
+            })
+            let embed = new Discord.RichEmbed()
+            .setAuthor("New Ticket")
+            .setFooter(bot.user.tag + " by ThisLightMan#6616")
+            .setColor("#f4df42")
+            .addField("User", message.member, true)
+            .addField("User Credits", user.credits)
+            .addField("Reason", message.content, true)
+            .setTimestamp();
+            ch.send(embed);
+
+            let embed2 = new Discord.RichEmbed()
+            .setDescription("Your ticket is ready in " + ch)
+            .setColor("#f4df42");
+            message.channel.send(embed2);
+        })
+    }
     //xp system
     let xpAdd = ~~((~~(Math.random()* 7) + 8)*user.xpmultiplier);
     let curXp = user.xp,
