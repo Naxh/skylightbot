@@ -23,6 +23,7 @@ module.exports.run = async (bot, message, args) => {
         if(!parseInt(args[2])) return message.reply("That is not an integer!");
         let user = await User.findOrCreate(message.guild, target);
         user.credits += parseInt(args[2]);
+        user.save();
         message.channel.send(":white_check_mark: ``" + args[2] + "`` credits have been added to ``" + user.tag + "'s credit balance!");
     }
 }

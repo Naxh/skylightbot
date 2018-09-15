@@ -171,6 +171,7 @@ bot.on('message', async (message) => {
     let user = await User.findOrCreate(message.guild, message.author);
 
     if(message.channel.id == "490610018073182209"){
+        message.delete();
         message.guild.createChannel(message.author.tag + "-" + message.author.id).then(ch => {
             ch.setParent(message.guild.channels.get("490615226014760960"));
             ch.overwritePermissions(message.author.id, {
@@ -189,7 +190,7 @@ bot.on('message', async (message) => {
             let embed2 = new Discord.RichEmbed()
             .setDescription("Your ticket is ready in " + ch)
             .setColor("#f4df42");
-            message.channel.send(embed2);
+            message.channel.send(embed2).then(msg => {msg.delete(10000)});
         })
     }
     //xp system
