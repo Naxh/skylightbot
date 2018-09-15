@@ -119,19 +119,19 @@ bot.on('raw', async event => {
                     .setTimestamp();
                     ch.send(embed);
                     for(let i = 0; i < element.questions.length; i++){
-                        let embed = new Discord.RichEmbed()
+                        let embed1 = new Discord.RichEmbed()
                         .setDescription(element.questions[i])
                         .setTimestamp()
                         .setColor("#268bea");
-                        ch.send(embed);
+                        ch.send(embed1);
                         await ch.awaitMessages(m => m.author.id === user.id, { max: 1, time: 600000, errors: ['time'] });
                     }
-                    let embed = new Discord.RichEmbed()
+                    let doneEmbed = new Discord.RichEmbed()
                     .setAuthor("Application Complete")
                     .setDescription("Your application is over! A staff member will look over your application when available!")
                     .setColor("#eae025")
                     .setTimestamp();
-                    ch.send(embed);
+                    ch.send(doneEmbed);
                     ch.overwritePermissions(member.id, {
                         SEND_MESSAGES: false, READ_MESSAGE_HISTORY: true, READ_MESSAGES: true
                     })
