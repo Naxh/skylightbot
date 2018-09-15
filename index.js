@@ -112,11 +112,11 @@ bot.on('raw', async event => {
                     })
                     message.channel.send(member + ", Your " + element.role + " application is ready in " + ch + "!").then(msg => {msg.delete(10000)});
                     ch.send("**WARNING:** There is a time limit of 10 minutes for each question!");
-                    for(let i = 0; i < element.questions; i++){
+                    for(let i = 0; i < element.questions.length; i++){
                         ch.send(element.questions[i]);
                         await ch.awaitMessages(m => m.author.id === user.id, { max: 1, time: 600000, errors: ['time'] });
                     }
-                    //ch.send("Your application is over! A staff member will look over your application when available!");
+                    ch.send("Your application is over! A staff member will look over your application when available!");
                     ch.overwritePermissions(member.id, {
                         SEND_MESSAGES: false, READ_MESSAGE_HISTORY: true, READ_MESSAGES: true
                     })
