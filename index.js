@@ -94,7 +94,7 @@ bot.on('raw', async event => {
     }
     if(channel.id == "490356148961017866"){
         if(member.id == bot.user.id) return;
-        message.reations.get(emojiKey).remove(member);
+        message.reactions.get(emojiKey).remove(member);
         const applyRoles = [
             {role:"Helper", emoji:"🇭", questions: [
                 "Question 1",
