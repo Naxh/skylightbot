@@ -105,7 +105,7 @@ bot.on('raw', async event => {
         applyRoles.forEach(async element => {
             if(emojiKey == element.emoji){
                 if(member.roles.has(message.guild.roles.find(r => r.name.toLowerCase() == element.role))) return message.channel.send(member + ", You already have that role!").then(msg => {msg.delete(5000)});
-                message.guild.createChannel(element.role + "-" + member.id, "text").then(ch => {
+                message.guild.createChannel(element.role + "-" + member.id, "text").then(async ch => {
                     ch.setParent(message.guild.channels.get("490358699651629069"));
                     ch.overwritePermissions(member.id, {
                         SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, READ_MESSAGES: true
