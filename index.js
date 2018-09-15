@@ -92,6 +92,38 @@ bot.on('raw', async event => {
             }
         })
     }
+    if(channel.id == "490356148961017866"){
+        if(member.id == bot.user.id) return;
+        message.reations.get(emojiKey).remove(member);
+        const applyRoles = [
+            {role:"Helper", emoji:"🇭", questions: [
+                "Question 1",
+                "Question 2",
+                "Question 3"
+            ]}
+        ];
+        applyRoles.forEach(element => {
+            if(emojiKey == element.emoji){
+                if(member.roles.has(message.guild.roles.find(r => r.name.toLowerCase() == element.role))) return message.channel.send(member + ", You already have that role!").then(msg => {msg.delete(5000)});
+                message.guild.createChannel(element.role + "-" + member.id, "text").then(ch => {
+                    ch.setParent(message.guild.channels.get("490358699651629069"));
+                    ch.overwritePermissions(member.id, {
+                        SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, READ_MESSAGES: true
+                    })
+                    message.channel.send(member + ", Your " + element.role + " application is ready in " + ch + "!").then(msg => {msg.delete(10000)});
+                    ch.send("**WARNING:** There is a time limit of 10 minutes for each question!");
+                    for(let i = 0; i < element.questions; i++){
+                        ch.send(element.questions[i]);
+                        await ch.awaitMessages(m => m.author.id === user.id, { max: 1, time: 600000, errors: ['time'] });
+                    }
+                    ch.send("Your application is over! A staff member will look over your application when available!");
+                    ch.overwritePermissions(member.id, {
+                        SEND_MESSAGES: false, READ_MESSAGE_HISTORY: true, READ_MESSAGES: true
+                    })
+                })
+            }
+        })
+    }
 });
 const events2 = {
     MESSAGE_REACTION_REMOVE: 'messageReactionRemove'
