@@ -253,6 +253,16 @@ bot.on('guildMemberAdd', async (member) => {
             invites.forEach(inv => {
                 if(inv.inviter.id == invite.inviter.id) invs += inv.uses;
             })
+            function isEven(n) {
+                if(n == 0) return false;
+                return n % 2 == 0;
+            }
+            if(isEven(invs)) {
+                let user = await User.findOrCreate(member.guild, inv.inviter);
+                user.credits += 2
+                user.save();
+                inv.inviter.send("You have invited 2 more people so you have recieved 2 credits! Your new balance is ``" + user.credits + "`` credits!");
+            }
             rewards.forEach(async element => {
                 if(invs == element.invites){
                     //they got a reward
