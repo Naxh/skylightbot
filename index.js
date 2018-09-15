@@ -170,6 +170,7 @@ bot.on('message', async (message) => {
         await message.react("❌");
     }
     let user = await User.findOrCreate(message.guild, message.author);
+    
     if(message.channel.id == "490610018073182209"){
         message.guild.createChannel(message.author.tag + "-" + message.author.id).then(ch => {
             ch.setParent(message.guild.channels.get("490615226014760960"));
