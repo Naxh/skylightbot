@@ -116,7 +116,7 @@ bot.on('raw', async event => {
                         ch.send(element.questions[i]);
                         await ch.awaitMessages(m => m.author.id === user.id, { max: 1, time: 600000, errors: ['time'] });
                     }
-                    ch.send("Your application is over! A staff member will look over your application when available!");
+                    //ch.send("Your application is over! A staff member will look over your application when available!");
                     ch.overwritePermissions(member.id, {
                         SEND_MESSAGES: false, READ_MESSAGE_HISTORY: true, READ_MESSAGES: true
                     })
