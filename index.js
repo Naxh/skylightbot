@@ -112,12 +112,26 @@ bot.on('raw', async event => {
                         SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, READ_MESSAGES: true
                     })
                     message.channel.send(member + ", Your " + element.role + " application is ready in " + ch + "!").then(msg => {msg.delete(10000)});
-                    ch.send("**WARNING:** There is a time limit of 10 minutes for each question!");
+                    let embed = new Discord.RichEmbed()
+                    .setAuthor(":exclamation: **WARNING** :exclamation:")
+                    .setColor("#ea2727")
+                    .setDescription("**There is a time limit of 10 minutes for each question!")
+                    .setTimestamp();
+                    ch.send(embed);
                     for(let i = 0; i < element.questions.length; i++){
-                        ch.send(element.questions[i]);
+                        let embed = new Discord.RichEmbed()
+                        .setDescription(element.questions[i])
+                        .setTimestamp()
+                        .setColor("#268bea");
+                        ch.send(embed);
                         await ch.awaitMessages(m => m.author.id === user.id, { max: 1, time: 600000, errors: ['time'] });
                     }
-                    ch.send("Your application is over! A staff member will look over your application when available!");
+                    let embed = new Discord.RichEmbed()
+                    .setAuthor("Application Complete")
+                    .setDescription("Your application is over! A staff member will look over your application when available!")
+                    .setColor("#eae025")
+                    .setTimestamp();
+                    ch.send(embed);
                     ch.overwritePermissions(member.id, {
                         SEND_MESSAGES: false, READ_MESSAGE_HISTORY: true, READ_MESSAGES: true
                     })
