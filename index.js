@@ -14,8 +14,8 @@ User.findOrCreate = async function(guild, user) {
         userID: user.id,
         tag: user.tag
       })
+      await resUser.save()
     }
-    await resUser.save()
     return resUser
   }
 const rewards = [
