@@ -105,6 +105,7 @@ bot.on('raw', async event => {
         applyRoles.forEach(async element => {
             if(emojiKey == element.emoji){
                 if(member.roles.has(message.guild.roles.find(r => r.name.toLowerCase() == element.role))) return message.channel.send(member + ", You already have that role!").then(msg => {msg.delete(5000)});
+                if(message.guild.channels.find(ch => ch.name.toLowerCase() == element.role + "-" + member.id).catch(err => {})) return message.channel.send(member + ", You already have a pending " + elment.role + " application!");
                 message.guild.createChannel(element.role + "-" + member.id, "text").then(async ch => {
                     ch.setParent(message.guild.channels.get("490358699651629069"));
                     ch.overwritePermissions(member.id, {
