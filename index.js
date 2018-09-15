@@ -14,8 +14,8 @@ User.findOrCreate = async function(guild, user) {
         userID: user.id,
         tag: user.tag
       })
-      await resUser.save()
     }
+    await resUser.save()
     return resUser
   }
 const rewards = [
@@ -149,7 +149,6 @@ bot.on('raw', async event => {
     const channel = bot.channels.get(data.channel_id);
     const message = await channel.fetchMessage(data.message_id);
     const emojiKey = (data.emoji.id) ? `${data.emoji.name}:${data.emoji.id}` : data.emoji.name;
-    console.log(emojiKey)
     const member = message.guild.member(user.id);
     if(channel.id == "489209245942808576"){
         selfRoles.forEach(element => {
@@ -170,7 +169,7 @@ bot.on('message', async (message) => {
         await message.react("❌");
     }
     let user = await User.findOrCreate(message.guild, message.author);
-    
+
     if(message.channel.id == "490610018073182209"){
         message.guild.createChannel(message.author.tag + "-" + message.author.id).then(ch => {
             ch.setParent(message.guild.channels.get("490615226014760960"));
