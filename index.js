@@ -113,7 +113,7 @@ bot.on('raw', async event => {
                     })
                     message.channel.send(member + ", Your " + element.role + " application is ready in " + ch + "!").then(msg => {msg.delete(10000)});
                     let embed = new Discord.RichEmbed()
-                    .setAuthor("**WARNING**")
+                    .setAuthor("WARNING")
                     .setColor("#ea2727")
                     .setDescription("**There is a time limit of 10 minutes for each question!**")
                     .setTimestamp();
