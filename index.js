@@ -105,7 +105,7 @@ bot.on('raw', async event => {
         applyRoles.forEach(async element => {
             if(emojiKey == element.emoji){
                 if(member.roles.has(message.guild.roles.find(r => r.name.toLowerCase() == element.role))) return message.channel.send(member + ", You already have that role!").then(msg => {msg.delete(5000)});
-                if(message.guild.channels.find(ch => ch.name.toLowerCase() == element.role + "-" + member.id)) return message.channel.send(member + ", You already have a pending " + elment.role + " application!");
+                if(message.guild.channels.find(ch => ch.name.toLowerCase() == element.role.toLowerCase() + "-" + member.id)) return message.channel.send(member + ", You already have a pending " + elment.role + " application!");
                 message.guild.createChannel(element.role + "-" + member.id, "text").then(async ch => {
                     ch.setParent(message.guild.channels.get("490358699651629069"));
                     ch.overwritePermissions(member.id, {
@@ -113,15 +113,14 @@ bot.on('raw', async event => {
                     })
                     message.channel.send(member + ", Your " + element.role + " application is ready in " + ch + "!").then(msg => {msg.delete(10000)});
                     let embed = new Discord.RichEmbed()
-                    .setAuthor(":exclamation: **WARNING** :exclamation:")
+                    .setAuthor("**WARNING**")
                     .setColor("#ea2727")
-                    .setDescription("**There is a time limit of 10 minutes for each question!")
+                    .setDescription("**There is a time limit of 10 minutes for each question!**")
                     .setTimestamp();
                     ch.send(embed);
                     for(let i = 0; i < element.questions.length; i++){
                         let embed1 = new Discord.RichEmbed()
                         .setDescription(element.questions[i])
-                        .setTimestamp()
                         .setColor("#268bea");
                         ch.send(embed1);
                         await ch.awaitMessages(m => m.author.id === user.id, { max: 1, time: 600000, errors: ['time'] });
