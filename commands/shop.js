@@ -10,10 +10,11 @@ module.exports.run = async(bot,message,args) => {
     
     let member = message.member;
     let guild = message.guild;
+    let user = await User.findOrCreate(message.guild, message.author);
     let {coins, 
          xp,
          coinmultiplier
-       } = await User.findOrCreate(message.guild, message.author);
+       } = user
 
 
     const embed = new Discord.RichEmbed() 
@@ -23,6 +24,8 @@ module.exports.run = async(bot,message,args) => {
     .setAuthor(`${message.member.user.tag}, Welcome to the SkyLight Shop`, message.author.displayAvatarURL)
     .addField(`**2.00x xp boost**`, "500 coins")
     .addField(`**2.00x coin boost**`, "500 coins")
+    .addField("**5** credits", "250 coins")
+    .addField("**1 Advertisement", "250 coins")
     .addField(`**Your coins**`, coins)
 message.author.send(embed);
     message.author.send("Say the name of item you would like to buy").then(ms =>{
@@ -34,10 +37,7 @@ message.author.send(embed);
           message.reply("You have bought the 2.00x xp boost")
           coins -= 500;
           xpmultiplier = 2;
-           User.updateOne({ guildID: guild.id, userID: message.author.id }, { coins: coins })
-             .catch(function(error,affected,resp){
-               if(error) console.log(error);
-          });
+          user.save();
           collector.stop();
         }
         if(message.content.toLowerCase() == "2.00x coin boost") {
@@ -47,10 +47,27 @@ message.author.send(embed);
           
           coins -= 500;
           coinmultiplier = 2;
-          User.updateOne({ guildID: message.guild.id, userID: message.author.id }, { coins: coins})
-             .catch(function(error,affected,resp){
-                if(error) console.log(error);
-                });
+          user.save();
+          collector.stop()
+        }
+        if(message.content.toLowerCase() == "5 credits") {
+          if(coins < 250) return message.reply("You do not have enough coins for that item!")
+          message.reply("You have bought the 5 credits")
+          
+          coins -= 250;
+          user.credits += 5;
+          user.save();
+          collector.stop()
+        }
+        if(message.content.toLowerCase() == "1 advertisement") {
+          if(coins < 250) return message.reply("You do not have enough coins for that item!")
+          message.reply("You have bought the 1 Advertisement")
+          
+          coins -= 250;
+          user.save();
+          bot.guilds.get("485897985960443936").channels.get("491032995646668820").overwritePermissions(message.author.id, {
+            SEND_MESSAGES: true
+          })
           collector.stop()
         }
         
