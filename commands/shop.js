@@ -66,7 +66,7 @@ message.author.send(embed);
           coins -= 250;
           user.save();
           let guild = bot.guilds.get("485897985960443936")
-          let msgs = await guild.channels.get("491032995646668820").fetchMessages().then(msg => msg.array().length);
+          let msgs = await guild.channels.get("491032995646668820").fetchMessages().length
           guild.channels.get("491032995646668820").send("Advertisement " + msgs + "\nOwner: " + guild.member(message.author.id) + "\n\n```\nNo content yet! Use ``-ad " + msgs + " content here`` to set the content!\n```");
           collector.stop()
         }
