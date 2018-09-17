@@ -28,7 +28,7 @@ module.exports.run = async(bot,message,args) => {
     .addField("**1 Advertisement**", "250 coins")
     .addField(`**Your coins**`, coins)
 message.author.send(embed);
-    message.author.send("Say the name of item you would like to buy").then(ms =>{
+    message.author.send("Say the name of item you would like to buy").then(async ms =>{
       const collector = new Discord.MessageCollector(ms.channel, m => message.author.id === message.author.id, { time: 180000});
       collector.on('collect', message => {
         if(message.content.toLowerCase() == "2.00x xp boost") {
