@@ -30,7 +30,7 @@ module.exports.run = async(bot,message,args) => {
 message.author.send(embed);
     message.author.send("Say the name of item you would like to buy").then(async ms =>{
       const collector = new Discord.MessageCollector(ms.channel, m => message.author.id === message.author.id, { time: 180000});
-      collector.on('collect', message => {
+      collector.on('collect', async message => {
         if(message.content.toLowerCase() == "2.00x xp boost") {
           if(xpmultiplier == 2) return message.reply("You already have that boost!");
           if(coins < 500) return message.reply("You do not have enough coins for that item!")
@@ -66,7 +66,7 @@ message.author.send(embed);
           coins -= 250;
           user.save();
           let guild = bot.guilds.get("485897985960443936")
-          let msgs = await guild.channels.get("491032995646668820").fetchMessages().length
+          let msgs = await guild.channels.get("491032995646668820").fetchMessages().then(msg => msg.array().length);
           guild.channels.get("491032995646668820").send("Advertisement " + msgs + "\nOwner: " + guild.member(message.author.id) + "\n\n```\nNo content yet! Use ``-ad " + msgs + " content here`` to set the content!\n```");
           collector.stop()
         }
