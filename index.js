@@ -193,9 +193,6 @@ bot.on('message', async (message) => {
             message.channel.send(embed2).then(msg => {msg.delete(10000)});
         })
     }
-    if(message.channel.id == "491032995646668820"){
-        message.channel.overwritePermissions(message.author.id, {})
-    }
     //xp system
     let xpAdd = ~~((~~(Math.random()* 7) + 8)*user.xpmultiplier);
     let curXp = user.xp,
