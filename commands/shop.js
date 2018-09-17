@@ -25,7 +25,7 @@ module.exports.run = async(bot,message,args) => {
     .addField(`**2.00x xp boost**`, "500 coins")
     .addField(`**2.00x coin boost**`, "500 coins")
     .addField("**5** credits", "250 coins")
-    .addField("**1 Advertisement", "250 coins")
+    .addField("**1 Advertisement**", "250 coins")
     .addField(`**Your coins**`, coins)
 message.author.send(embed);
     message.author.send("Say the name of item you would like to buy").then(ms =>{
