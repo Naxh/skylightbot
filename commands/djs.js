@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
         .setColor("#d80404");
         return message.channel.send(embed).then(msg => {msg.delete(5000)});
     }
-    require("fs").readFile("data/djsdocs.json", "utf-8", function(err, json){
+    require("fs").readFile("discord.json", "utf-8", function(err, json){
         json = JSON.parse(json);
         var string = args.join(" ");
         string = string.replace(/(\.|\s)/g, '#');
@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
             const embed = new Discord.RichEmbed()
             .setColor("#30acf4")
             .setAuthor("Discord.js Docs", "https://discord.js.org/static/logo-square.png")
-            .setDescription(`\n__[${found.name}](https://discord.js.org/#/docs/main/stable/class/${found.name})__\n**${found.description}**`);
+            .setDescription(`\n__[${found.name}](https://discord.js.org/#/docs/main/stable/class/${found.name})__\n**${found.description.replace('<info>', '').replace('</info>', '')}**`);
             if(found.props) embed.addField("Properties", found.props.map(prop => "``" + prop.name + "``").join(" "));
             if(found.methods) embed.addField("Methods", found.methods.map(method => "``" + method.name + "`` ").join(" "));
             if(found.events) embed.addField("Events", found.events.map(event => "``" + event.name + "`` ").join(" "));
@@ -68,7 +68,7 @@ module.exports.run = async (bot, message, args) => {
             const embed = new Discord.RichEmbed()
             .setColor("#30acf4")
             .setAuthor("Discord.js Docs", "https://discord.js.org/static/logo-square.png")
-            .setDescription(`\n__[${string}](https://discord.js.org/#/docs/main/stable/class/${found.name}?scrollTo=${scrollTo})__\n**${foundProp.description}**`);
+            .setDescription(`\n__[${string}](https://discord.js.org/#/docs/main/stable/class/${found.name}?scrollTo=${scrollTo})__\n**${foundProp.description.replace('<info>', '').replace('</info>', '')}**`);
             if(foundProp.type) {
                 var type = foundProp.type[0][0] + "";
                 embed.addField("Type", type.charAt(0).toUpperCase() + type.slice(1));
