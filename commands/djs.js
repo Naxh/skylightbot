@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
         .setColor("#d80404");
         return message.channel.send(embed).then(msg => {msg.delete(5000)});
     }
-    require("fs").readFile("discord.json", "utf-8", function(err, json){
+    require("fs").readFile("data/djsdocs.json", "utf-8", function(err, json){
         json = JSON.parse(json);
         var string = args.join(" ");
         string = string.replace(/(\.|\s)/g, '#');
