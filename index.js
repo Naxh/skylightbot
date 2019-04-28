@@ -111,6 +111,9 @@ bot.on('raw', async event => {
                     ch.overwritePermissions(member.id, {
                         SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true, READ_MESSAGES: true, VIEW_CHANNEL: true
                     })
+                    ch.overwritePermissions(message.guild.id, {
+                      VIEW_CHANNEL: true
+                    })
                     message.channel.send(member + ", Your " + element.role + " application is ready in " + ch + "!").then(msg => {msg.delete(10000)});
                     let embed = new Discord.RichEmbed()
                     .setAuthor("WARNING")
